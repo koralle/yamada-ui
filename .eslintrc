@@ -85,7 +85,47 @@
     "vitest/require-top-level-describe": "error",
     "vitest/valid-expect": ["error", {
       "alwaysAwait": true
-    }]
+    }],
+    "testing-library/await-async-events": [
+      "error",
+      {
+        "eventModule": ["fireEvent"]
+      }
+    ],
+    "testing-library/await-async-queries": "error",
+    "testing-library/await-async-utils": "error",
+    "testing-library/no-await-sync-events": [
+      "error",
+      {
+        "eventModules": ["fire-event"]
+      }
+    ],
+    "testing-library/no-await-sync-queries": "error",
+    "testing-library/no-container": "error",
+    "testing-library/no-debugging-utils": [
+      "error",
+      {
+        "utilsToCheckFor": {
+          "debug": true,
+          "logRoles": true,
+          "logDOM": true
+        }
+      }
+    ],
+    "testing-library/no-dom-import": ["error", "react"],
+    "testing-library/no-global-regexp-flag-in-query": "error",
+    "testing-library/no-node-access": "error",
+    "testing-library/no-promise-in-fire-event": "error",
+    "testing-library/no-unnecessary-act": "error",
+    "testing-library/no-wait-for-multiple-assertions": "error",
+    "testing-library/no-wait-for-side-effects": "error",
+    "testing-library/prefer-explicit-assert": "error",
+    "testing-library/prefer-find-by": "error",
+    "testing-library/prefer-implicit-assert": "off",
+    "testing-library/prefer-query-by-disappearance": "error",
+    "testing-library/prefer-screen-queries": "off",
+    "testing-library/prefer-user-event": "error",
+    "testing-library/render-result-naming-convention": "error"
   },
   "overrides": [
     {
