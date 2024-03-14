@@ -1,6 +1,6 @@
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons"
 import { Icon } from "@yamada-ui/fontawesome"
-import { a11y, render, screen, fireEvent } from "@yamada-ui/test"
+import { a11y, render } from "@yamada-ui/test"
 import {
   Accordion,
   AccordionItem,
@@ -20,34 +20,33 @@ describe("<Accordion />", () => {
     await a11y(container)
   })
 
-  test("should render correctly with defaultIndex item expanded", () => {
-    render(
+  test("should render correctly with defaultIndex item expanded", async () => {
+    const { user, findByTestId } = render(
       <Accordion isToggle defaultIndex={0}>
         <AccordionItem data-testid="accordion-item" label="Accordion Label 1">
-          This is an accordion item
+          This is the first accordion item
         </AccordionItem>
         <AccordionItem label="Accordion Label 2">
-          This is an accordion item
+          This is the second accordion item
         </AccordionItem>
       </Accordion>,
     )
-    expect(screen.getByTestId("accordion-item")).toHaveAttribute(
-      "aria-expanded",
-      "true",
-    )
+
+    const firstAccodionItem = await findByTestId("accordion-item")
+    const button = firstAccodionItem.querySelector("button")
+    expect(button).toHaveAttribute("aria-expanded", "true")
+
     // toggle the accordion item
-    fireEvent.click(
-      screen.getByTestId("accordion-item").getElementsByTagName("button")[0],
-    )
-    expect(
-      screen.getByTestId("accordion-item").getElementsByTagName("svg")[0],
-    ).toHaveAttribute("aria-hidden", "true")
+    await user.click(button!)
+
+    const icon = firstAccodionItem.querySelector(".ui-icon")
+    expect(icon).toHaveAttribute("aria-hidden", "true")
   })
 
-  test("should show multiple items", () => {
-    render(
+  test("should show multiple items", async () => {
+    const { findAllByRole } = render(
       <Accordion defaultIndex={[0, 1]} isMultiple>
-        <AccordionItem data-testid="accordion-item" label="Accordion Label 1">
+        <AccordionItem label="Accordion Label 1">
           This is an accordion item
         </AccordionItem>
         <AccordionItem label="Accordion Label 2">
@@ -56,13 +55,14 @@ describe("<Accordion />", () => {
       </Accordion>,
     )
 
-    screen.getAllByRole("button").forEach((element) => {
+    const buttons = await findAllByRole("button")
+    buttons.forEach((element) => {
       expect(element).toHaveAttribute("aria-expanded", "true")
     })
   })
 
-  test("should render a disabled item", () => {
-    render(
+  test("should render a disabled item", async () => {
+    const { findByTestId } = render(
       <Accordion>
         <AccordionItem
           data-testid="accordion-item"
@@ -74,12 +74,13 @@ describe("<Accordion />", () => {
       </Accordion>,
     )
 
-    const item = screen.getByTestId("accordion-item")
-    expect(item.getElementsByTagName("button")[0]).toHaveAttribute("disabled")
+    const accordionItem = await findByTestId("accordion-item")
+    const button = accordionItem.querySelector("button")
+    expect(button!).toHaveAttribute("disabled")
   })
 
-  test("should render item with panel", () => {
-    render(
+  test("should render item with panel", async () => {
+    const { findByTestId } = render(
       <Accordion>
         <AccordionItem label="Item">
           <AccordionPanel
@@ -93,11 +94,12 @@ describe("<Accordion />", () => {
       </Accordion>,
     )
 
-    expect(screen.getByTestId("accordion-panel")).toBeInTheDocument()
+    const panel = await findByTestId("accordion-panel")
+    expect(panel).toBeInTheDocument()
   })
 
-  test("should render item with custom icon", () => {
-    render(
+  test("should render item with custom icon", async () => {
+    const { findByTestId, user } = render(
       <Accordion
         icon={({ isExpanded }) => (
           <Icon
@@ -112,22 +114,19 @@ describe("<Accordion />", () => {
         </AccordionItem>
       </Accordion>,
     )
-    expect(screen.getByTestId("custom-icon")).toHaveAttribute(
-      "data-icon",
-      "plus",
-    )
+    const customIcon = await findByTestId("custom-icon")
+    expect(customIcon).toHaveAttribute("data-icon", "plus")
+
     // toggle the accordion item
-    fireEvent.click(
-      screen.getByTestId("accordion-item").getElementsByTagName("button")[0],
+    const button = (await findByTestId("accordion-item")).querySelector(
+      "button",
     )
-    expect(screen.getByTestId("custom-icon")).toHaveAttribute(
-      "data-icon",
-      "minus",
-    )
+    await user.click(button!)
+    expect(customIcon).toHaveAttribute("data-icon", "minus")
   })
 
-  test("should render item with custom label", () => {
-    render(
+  test("should render item with custom label", async () => {
+    const { findByTestId } = render(
       <Accordion>
         <AccordionItem>
           <AccordionLabel
@@ -141,6 +140,7 @@ describe("<Accordion />", () => {
         </AccordionItem>
       </Accordion>,
     )
-    expect(screen.getByTestId("accordion-label")).toBeInTheDocument()
+    const accordionLabel = await findByTestId("accordion-label")
+    expect(accordionLabel).toBeInTheDocument()
   })
 })
