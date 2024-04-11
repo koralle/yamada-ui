@@ -71,6 +71,7 @@ import { Tag } from "./tag"
 import { Textarea } from "./textarea"
 import { Toggle } from "./toggle"
 import { Tooltip } from "./tooltip"
+import { Tour } from "./tour"
 
 export default {
   Toggle,
@@ -146,4 +147,5 @@ export default {
   Tag,
   Textarea,
   Tooltip,
+  Tour,
 }

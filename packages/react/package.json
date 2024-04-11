@@ -107,6 +107,7 @@
     "@yamada-ui/theme-tools": "workspace:*",
     "@yamada-ui/toggle": "workspace:*",
     "@yamada-ui/tooltip": "workspace:*",
+    "@yamada-ui/tour": "workspace:*",
     "@yamada-ui/transitions": "workspace:*",
     "@yamada-ui/typography": "workspace:*",
     "@yamada-ui/use-animation": "workspace:*",
