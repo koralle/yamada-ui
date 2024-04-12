@@ -2493,6 +2493,9 @@ importers:
       '@yamada-ui/modal':
         specifier: workspace:^
         version: link:../modal
+      '@yamada-ui/popover':
+        specifier: workspace:^
+        version: link:../popover
       '@yamada-ui/utils':
         specifier: workspace:*
         version: link:../../utils

@@ -48,6 +48,7 @@
   "dependencies": {
     "@yamada-ui/core": "workspace:*",
     "@yamada-ui/modal": "workspace:^",
+    "@yamada-ui/popover": "workspace:^",
     "@yamada-ui/utils": "workspace:*"
   },
   "devDependencies": {
