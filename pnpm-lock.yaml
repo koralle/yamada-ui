@@ -2490,6 +2490,9 @@ importers:
       '@yamada-ui/core':
         specifier: workspace:*
         version: link:../../core
+      '@yamada-ui/modal':
+        specifier: workspace:^
+        version: link:../modal
       '@yamada-ui/utils':
         specifier: workspace:*
         version: link:../../utils
