@@ -1,19 +1,22 @@
 import checkNode from "cli-check-node"
 import unhandledError from "cli-handle-unhandled"
 import welcome from "cli-welcome"
+import { readableColorIsBlack } from "color2k"
 import updateNotifier from "update-notifier"
 import JSON from "../../package.json"
 
-export const initCLI = async () => {
-  checkNode("12")
+export const initCLI = async (bgColor: string) => {
+  checkNode("20")
 
   await unhandledError()
+
+  const color = readableColorIsBlack(bgColor) ? `#000` : `#fff`
 
   welcome({
     title: "Yamada UI CLI",
     tagLine: `by Yamada UI\n${JSON.description}`,
-    bgColor: `#3cc360`,
-    color: `#FFFFFF`,
+    bgColor,
+    color,
     bold: true,
     clear: false,
     version: JSON.version,
