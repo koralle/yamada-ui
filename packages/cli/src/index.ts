@@ -51,6 +51,8 @@ export const run = async () => {
   program
     .command("migrate [source]")
     .option("-c, --config <path>", "Path to config file")
+    .option("--exclude <...paths>", "Paths to exclude")
+    .option("-F, --force", "hoge")
     .action(migrate(hex))
 
   program
