@@ -19,6 +19,7 @@ import {
   getEventRelatedTarget,
   handlerAll,
   isContains,
+  isUndefined,
   mergeRefs,
   omitObject,
   pickObject,
@@ -422,6 +423,8 @@ export const useCalendarPicker = <T extends UseCalendarProps<any>>(
         ...(!allowInput ? { cursor: "pointer" } : {}),
       }
 
+      const isRriaExpanded = () => !isUndefined(dataAttr(isOpen))
+
       return {
         ref: mergeRefs(inputRef, ref),
         tabIndex: !allowInput ? 0 : -1,
@@ -431,7 +434,7 @@ export const useCalendarPicker = <T extends UseCalendarProps<any>>(
         role: "combobox",
         "aria-haspopup": "dialog",
         "data-active": dataAttr(isOpen),
-        "aria-expanded": dataAttr(isOpen),
+        "aria-expanded": isRriaExpanded() ? "true" : "false",
         onFocus: handlerAll(props.onFocus, rest.onFocus, onFocus),
         onKeyDown: handlerAll(
           props.onKeyDown,
