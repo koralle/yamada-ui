@@ -18,7 +18,7 @@ import {
   mergeRefs,
 } from "@yamada-ui/utils"
 import type { FC, HTMLAttributes, RefAttributes } from "react"
-import { cloneElement, useRef } from "react"
+import { cloneElement, useId, useRef } from "react"
 import { Calendar } from "./calendar"
 import type { UseDatePickerProps } from "./use-date-picker"
 import {
@@ -114,6 +114,8 @@ export const DatePicker = forwardRef<DatePickerProps, "input">((props, ref) => {
     ...styles.container,
   }
 
+  const popoverContentId = useId()
+
   return (
     <DatePickerProvider value={styles}>
       <Popover {...getPopoverProps()}>
@@ -144,6 +146,7 @@ export const DatePicker = forwardRef<DatePickerProps, "input">((props, ref) => {
 
           <Portal {...portalProps}>
             <PopoverContent
+              id={popoverContentId}
               role="dialog"
               className="ui-date-picker__popover"
               __css={{ ...styles.list }}
