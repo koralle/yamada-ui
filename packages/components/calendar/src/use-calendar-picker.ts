@@ -429,6 +429,7 @@ export const useCalendarPicker = <T extends UseCalendarProps<any>>(
         ...formControlProps,
         style,
         role: "combobox",
+        "aria-haspopup": "dialog",
         "data-active": dataAttr(isOpen),
         "aria-expanded": dataAttr(isOpen),
         onFocus: handlerAll(props.onFocus, rest.onFocus, onFocus),
