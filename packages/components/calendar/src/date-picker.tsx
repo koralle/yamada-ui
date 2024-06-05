@@ -129,7 +129,10 @@ export const DatePicker = forwardRef<DatePickerProps, "input">((props, ref) => {
             __css={{ position: "relative", ...styles.inner }}
           >
             <DatePickerField
-              {...getFieldProps({ h, minH }, ref)}
+              {...getFieldProps(
+                { h, minH, "aria-controls": popoverContentId },
+                ref,
+              )}
               inputProps={getInputProps(inputProps)}
             />
 
