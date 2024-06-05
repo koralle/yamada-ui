@@ -144,6 +144,7 @@ export const DatePicker = forwardRef<DatePickerProps, "input">((props, ref) => {
 
           <Portal {...portalProps}>
             <PopoverContent
+              role="dialog"
               className="ui-date-picker__popover"
               __css={{ ...styles.list }}
             >
