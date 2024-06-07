@@ -151,6 +151,7 @@ export const DatePicker = forwardRef<DatePickerProps, "input">((props, ref) => {
             <PopoverContent
               id={popoverContentId}
               role="dialog"
+              aria-modals="true"
               className="ui-date-picker__popover"
               __css={{ ...styles.list }}
             >
