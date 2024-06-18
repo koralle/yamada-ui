@@ -366,6 +366,7 @@ export const useCarouselSlide = ({ index }: UseCarouselSlideProps) => {
   const getSlideProps: UIPropGetter = useCallback(
     (props = {}) => ({
       ...props,
+      role: "group",
       "aria-roledescription": "slide",
       "data-index": index,
       "data-selected": dataAttr(isSelected),
