@@ -313,6 +313,7 @@ export const useCarousel = ({
     (props = {}, ref = null) => ({
       ...computedProps[0],
       ...props,
+      "aria-description": "carousel",
       ref,
       onMouseEnter: handlerAll(props.onMouseEnter, () => {
         setIsMouseEnter(true)
