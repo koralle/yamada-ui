@@ -357,7 +357,7 @@ export type UseCarouselSlideProps = {
 }
 
 export const useCarouselSlide = ({ index }: UseCarouselSlideProps) => {
-  const { selectedIndex, slidesToScroll } = useCarouselContext()
+  const { selectedIndex, slidesToScroll, indexes } = useCarouselContext()
 
   index = Math.floor((index ?? 0) / (slidesToScroll ?? 1))
 
@@ -367,11 +367,12 @@ export const useCarouselSlide = ({ index }: UseCarouselSlideProps) => {
     (props = {}) => ({
       ...props,
       role: "group",
+      "aria-label": props["aria-label"] ?? `${index + 1} of ${indexes.length}`,
       "aria-roledescription": "slide",
       "data-index": index,
       "data-selected": dataAttr(isSelected),
     }),
-    [isSelected, index],
+    [isSelected, index, indexes.length],
   )
 
   return { getSlideProps }
