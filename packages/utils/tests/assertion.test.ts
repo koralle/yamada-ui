@@ -11,6 +11,7 @@ import {
   isFunction,
   isUnit,
   is,
+  assertNever,
 } from "../src"
 
 describe("Assertion", () => {
@@ -152,6 +153,14 @@ describe("Assertion", () => {
 
     test("Returns false for strings without units", () => {
       expect(isUnit("100")).toBeFalsy()
+    })
+  })
+
+  describe("assertNever", () => {
+    test("throws an error with the correct message", () => {
+      expect(() => assertNever("unexpected value" as never)).toThrow(
+        "unreachable: unexpected value",
+      )
     })
   })
 })
