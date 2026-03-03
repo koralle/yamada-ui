@@ -1,3 +1,5 @@
+console.log("Hello, Yamada!")
+
 export * from "./core"
 export * from "./theme"
 export * from "./utils"
